@@ -35,10 +35,15 @@ const Quiz = () => {
       name: suitableGenres[0].name,
       description: suitableGenres[0].description,
     };
+    const onRestartClick = () => {
+      setResults(gameQuiz.results);
+      setCurrentQuestion(0);
+    };
     return (
       <>
         <div>Вам подойдёт: {genre.name}</div>
         <div>Описание: {genre.description}</div>
+        <button onClick={onRestartClick}>сначала</button>
       </>
     );
   };
