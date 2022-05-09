@@ -29,7 +29,7 @@ const gameQuiz: Quiz = {
     },
     miscellaneousGame: {
       name: "Miscellaneous game",
-      description: "Игры не вошедшие в предыдущие пять классов",
+      description: "Настольние игры",
 
       rate: 0,
     },
