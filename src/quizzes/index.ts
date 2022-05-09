@@ -136,8 +136,8 @@ const gameQuiz: Quiz = {
     {
       questionText: "Вы любите противостояние двучх сторон в играх?",
       answers: {
-        yes: ["warGames", "warGames", "gameOfChance"],
-        no: ["raceGames", "paddleGames", "sportsGames", "warGames"],
+        yes: ["warGames", "gameOfChance"],
+        no: ["raceGames", "paddleGames", "sportsGames"],
       },
     },
     {
@@ -150,7 +150,7 @@ const gameQuiz: Quiz = {
     {
       questionText: "Вы предпочтёте сюжет гейплею?",
       answers: {
-        yes: ["inretpersonalGames", "inretpersonalGames", "warGames"],
+        yes: ["inretpersonalGames", "inretpersonalGames"],
         no: ["gameOfChance"],
       },
     },

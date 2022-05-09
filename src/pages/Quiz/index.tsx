@@ -6,7 +6,6 @@ import { Results } from "../../types";
 const Quiz = () => {
   const [results, setResults] = useState(gameQuiz.results);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [genre, setGenre] = useState({ name: "", description: "" });
   const questions = gameQuiz.questions;
 
   const onYesClick = () => {
@@ -16,13 +15,6 @@ const Quiz = () => {
       return quizServices.upRate(answer, newResults);
     }, results);
     setResults(newResults);
-    const suitableGenre = Object.values(newResults).sort(
-      (a, b) => b.rate - a.rate
-    )[0];
-    setGenre({
-      name: suitableGenre.name,
-      description: suitableGenre.description,
-    });
   };
 
   const onNoClick = () => {
@@ -32,13 +24,23 @@ const Quiz = () => {
       return quizServices.downRate(answer, newResults);
     }, results);
     setResults(newResults);
-    const suitableGenre = Object.values(newResults).sort(
+  };
+
+  const BestGenre = () => {
+    const suitableGenres = Object.values(results).sort(
       (a, b) => b.rate - a.rate
-    )[0];
-    setGenre({
-      name: suitableGenre.name,
-      description: suitableGenre.description,
-    });
+    );
+    console.log(suitableGenres);
+    const genre = {
+      name: suitableGenres[0].name,
+      description: suitableGenres[0].description,
+    };
+    return (
+      <>
+        <div>Вам подойдёт: {genre.name}</div>
+        <div>Описание: {genre.description}</div>
+      </>
+    );
   };
 
   return (
@@ -52,10 +54,7 @@ const Quiz = () => {
           </div>
         </div>
       ) : (
-        <>
-          <div>Вам подойдёт: {genre.name}</div>
-          <div>Описание: {genre.description}</div>
-        </>
+        <BestGenre />
       )}
     </>
   );
