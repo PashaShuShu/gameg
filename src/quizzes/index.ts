@@ -77,35 +77,35 @@ const gameQuiz: Quiz = {
           "sportsGames",
           "paddleGames",
         ],
-        no: ["educationalAndChildrenGames", "gameOfChance"],
+        no: ["adventure", "combatGames", "sportsGames", "paddleGames"],
       },
     },
     {
       questionText: "Вы азартный человек?",
       answers: {
         yes: ["gameOfChance", "gameOfChance", "raceGames"],
-        no: [],
+        no: ["gameOfChance", "gameOfChance", "raceGames"],
       },
     },
     {
       questionText: "Вы любите игры с процедурной генерацией мира?",
       answers: {
         yes: ["mazeGames", "dungeonsAndDragonsGames"],
-        no: ["combatGames", "sportsGames"],
+        no: ["mazeGames", "dungeonsAndDragonsGames"],
       },
     },
     {
       questionText: "Вы любите спорт?",
       answers: {
         yes: ["raceGames", "paddleGames", "sportsGames", "gameOfChance"],
-        no: ["educationalAndChildrenGames"],
+        no: ["raceGames", "paddleGames", "sportsGames", "gameOfChance"],
       },
     },
     {
       questionText: "Вы любите машины?",
       answers: {
         yes: ["raceGames", "paddleGames", "sportsGames", "warGames"],
-        no: [],
+        no: ["raceGames", "paddleGames", "sportsGames", "warGames"],
       },
     },
     {
@@ -118,7 +118,12 @@ const gameQuiz: Quiz = {
           "dungeonsAndDragonsGames",
           "adventure",
         ],
-        no: [],
+        no: [
+          "miscellaneousGame",
+          "gameOfChance",
+          "dungeonsAndDragonsGames",
+          "adventure",
+        ],
       },
     },
     {
@@ -130,28 +135,28 @@ const gameQuiz: Quiz = {
           "warGames",
           "combatGames",
         ],
-        no: [],
+        no: ["dungeonsAndDragonsGames", "warGames", "combatGames"],
       },
     },
     {
       questionText: "Вы любите противостояние двучх сторон в играх?",
       answers: {
         yes: ["warGames", "gameOfChance"],
-        no: ["raceGames", "paddleGames", "sportsGames"],
+        no: ["warGames", "gameOfChance"],
       },
     },
     {
       questionText: "Вы любите обучаться играя?",
       answers: {
         yes: ["educationalAndChildrenGames", "educationalAndChildrenGames"],
-        no: [],
+        no: ["educationalAndChildrenGames"],
       },
     },
     {
       questionText: "Вы предпочтёте сюжет гейплею?",
       answers: {
         yes: ["inretpersonalGames", "inretpersonalGames"],
-        no: ["gameOfChance"],
+        no: ["inretpersonalGames"],
       },
     },
   ],
