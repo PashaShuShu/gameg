@@ -139,7 +139,7 @@ const gameQuiz: Quiz = {
       },
     },
     {
-      questionText: "Вы любите противостояние двучх сторон в играх?",
+      questionText: "Вы любите противостояние двух сторон в играх?",
       answers: {
         yes: ["warGames", "gameOfChance"],
         no: ["warGames", "gameOfChance"],
