@@ -17,7 +17,7 @@ const Quiz = () => {
     }, results);
     setResults(newResults);
     const suitableGenre = Object.values(newResults).sort(
-      (a, b) => a.rate - b.rate
+      (a, b) => b.rate - a.rate
     )[0];
     setGenre({
       name: suitableGenre.name,
@@ -33,7 +33,7 @@ const Quiz = () => {
     }, results);
     setResults(newResults);
     const suitableGenre = Object.values(newResults).sort(
-      (a, b) => a.rate - b.rate
+      (a, b) => b.rate - a.rate
     )[0];
     setGenre({
       name: suitableGenre.name,
