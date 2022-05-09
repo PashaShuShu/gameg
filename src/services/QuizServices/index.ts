@@ -15,7 +15,7 @@ class QuizServices {
       ...results,
       [key]: {
         ...results[key],
-        rate: results[key].rate + 1,
+        rate: results[key].rate - 1,
       },
     };
   };
