@@ -1,163 +1,125 @@
-import { Quiz } from "../types";
+import { Characteristics, Quiz } from "../types";
+
+const {
+  SKILLS,
+  CHILDREN,
+  BLOOD,
+  MIDDLE_AGES,
+  SPACE,
+  ALIENS,
+  MMO,
+  ROUGE_LIKE,
+  HORROR,
+  THINK,
+  SPORT,
+  CARS,
+  MODERN,
+  ARDOR,
+  WITH_FRIEND,
+  ZOMBI,
+} = Characteristics;
 
 const gameQuiz: Quiz = {
-  results: {
-    combatGames: {
+  results: [
+    {
       name: "Combat games",
       description: "Игры с прямой конфронтацией на нанесение и избегание урона",
-      rate: 0,
+      characteristics: [BLOOD, MIDDLE_AGES, MMO, HORROR, MODERN, ZOMBI],
     },
-    mazeGames: {
+    {
       name: "Maze games",
       description: "Игры-лабиринты на выживание",
-      rate: 0,
+      characteristics: [THINK, HORROR, ROUGE_LIKE, SPACE, MODERN, ZOMBI],
     },
-    sportsGames: {
+    {
       name: "Sports games",
       description: "Моделирование классических видов спортивных игр",
-      rate: 0,
+      characteristics: [SPORT, CHILDREN],
     },
-    paddleGames: {
+    {
       name: "Paddle games",
-      rate: 0,
       description: "Игры на удержание мяча на игровом поле",
+      characteristics: [SPORT, THINK, CHILDREN],
     },
-    raceGames: {
+    {
       name: "Race games",
-      rate: 0,
       description: "Гонки на различных болидах",
+      characteristics: [CARS, CHILDREN],
     },
-    miscellaneousGame: {
+    {
       name: "Miscellaneous game",
       description: "Настольние игры",
-
-      rate: 0,
+      characteristics: [THINK, SPORT, ROUGE_LIKE, MIDDLE_AGES, CHILDREN, ZOMBI],
     },
-    adventure: {
+    {
       name: "Adventure",
-      rate: 0,
       description:
         "Акцент на прохождении сложных заданий, накоплении инструментов и достижении цели",
+      characteristics: [MODERN, MIDDLE_AGES, BLOOD, ZOMBI],
     },
-    dungeonsAndDragonsGames: {
+    {
       name: "D&D games (Dungeons and Dragons games)",
-      rate: 0,
       description: "Фантазийная ролевая игра",
+      characteristics: [
+        MIDDLE_AGES,
+        MMO,
+        THINK,
+        ALIENS,
+        CHILDREN,
+        SKILLS,
+        MODERN,
+      ],
     },
-    warGames: {
+    {
       name: "War games",
-      rate: 0,
       description: "Фокус на активном противостоянии с противником",
+      characteristics: [
+        MIDDLE_AGES,
+        SPACE,
+        ALIENS,
+        MMO,
+        ROUGE_LIKE,
+        HORROR,
+        ZOMBI,
+      ],
     },
-    gameOfChance: {
+    {
       name: "Game of Chance",
-      rate: 0,
       description: "Игры с вероятностью, азартные игры",
+      characteristics: [ARDOR],
     },
-    educationalAndChildrenGames: {
+    {
       name: "Educational and children’s games",
-      rate: 0,
       description: "Фокус на обучающей составляющей",
+      characteristics: [THINK, CHILDREN, SKILLS],
     },
-    inretpersonalGames: {
+    {
       name: "Inretpersonal games",
-      rate: 0,
       description: "Фокус на отношениях между несколькими игроками",
+      characteristics: [MMO, MIDDLE_AGES, SPACE, ALIENS, ZOMBI, WITH_FRIEND],
     },
-  },
+  ],
   questions: [
     {
-      questionText:
-        "Вы любите сложные игры которые требуют оттачивания навыков?",
-      answers: {
-        yes: [
-          "adventure",
-          "combatGames",
-          "combatGames",
-          "sportsGames",
-          "paddleGames",
-        ],
-        no: ["adventure", "combatGames", "sportsGames", "paddleGames"],
-      },
+      text: "Открытый мир",
+      characteristics: [
+        WITH_FRIEND,
+        ZOMBI,
+        CARS,
+        SKILLS,
+        BLOOD,
+        MMO,
+        ROUGE_LIKE,
+      ],
     },
     {
-      questionText: "Вы азартный человек?",
-      answers: {
-        yes: ["gameOfChance", "gameOfChance", "raceGames"],
-        no: ["gameOfChance", "gameOfChance", "raceGames"],
-      },
+      text: "Атмосфера",
+      characteristics: [SPACE, BLOOD, SKILLS, HORROR, MODERN, ROUGE_LIKE],
     },
+    { text: "Азарт", characteristics: [SPORT, CARS, ARDOR, SKILLS, CHILDREN] },
     {
-      questionText: "Вы любите игры с процедурной генерацией мира?",
-      answers: {
-        yes: ["mazeGames", "dungeonsAndDragonsGames"],
-        no: ["mazeGames", "dungeonsAndDragonsGames"],
-      },
-    },
-    {
-      questionText: "Вы любите спорт?",
-      answers: {
-        yes: ["raceGames", "paddleGames", "sportsGames", "gameOfChance"],
-        no: ["raceGames", "paddleGames", "sportsGames", "gameOfChance"],
-      },
-    },
-    {
-      questionText: "Вы любите машины?",
-      answers: {
-        yes: ["raceGames", "paddleGames", "sportsGames", "warGames"],
-        no: ["raceGames", "paddleGames", "sportsGames", "warGames"],
-      },
-    },
-    {
-      questionText: "Вы любите настольные игры?",
-      answers: {
-        yes: [
-          "miscellaneousGame",
-          "miscellaneousGame",
-          "gameOfChance",
-          "dungeonsAndDragonsGames",
-          "adventure",
-        ],
-        no: [
-          "miscellaneousGame",
-          "gameOfChance",
-          "dungeonsAndDragonsGames",
-          "adventure",
-        ],
-      },
-    },
-    {
-      questionText: "Вы любите ролевую систему в играх?",
-      answers: {
-        yes: [
-          "dungeonsAndDragonsGames",
-          "dungeonsAndDragonsGames",
-          "warGames",
-          "combatGames",
-        ],
-        no: ["dungeonsAndDragonsGames", "warGames", "combatGames"],
-      },
-    },
-    {
-      questionText: "Вы любите противостояние двух сторон в играх?",
-      answers: {
-        yes: ["warGames", "gameOfChance"],
-        no: ["warGames", "gameOfChance"],
-      },
-    },
-    {
-      questionText: "Вы любите обучаться играя?",
-      answers: {
-        yes: ["educationalAndChildrenGames", "educationalAndChildrenGames"],
-        no: ["educationalAndChildrenGames"],
-      },
-    },
-    {
-      questionText: "Вы предпочтёте сюжет гейплею?",
-      answers: {
-        yes: ["inretpersonalGames", "inretpersonalGames"],
-        no: ["inretpersonalGames"],
-      },
+      text: "Улучшить свои знания",
+      characteristics: [WITH_FRIEND, THINK, CHILDREN],
     },
   ],
 };

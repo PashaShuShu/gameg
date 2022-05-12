@@ -1,66 +1,87 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import gameQuiz from "../../quizzes";
 import quizServices from "../../services/QuizServices";
-import { Results } from "../../types";
+import { Characteristics, Result } from "../../types";
 
 const Quiz = () => {
-  const [results, setResults] = useState(gameQuiz.results);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const questions = gameQuiz.questions;
+  const [results, setResults] = useState<Result[]>([]);
+  const [characteristics, setCharacteristics] = useState<Characteristics[]>([]);
+  const [questionNumber, setQuestionNumber] = useState(0);
 
   const onYesClick = () => {
-    setCurrentQuestion((number) => number + 1);
-    const answers = questions[currentQuestion].answers.yes;
-    const newResults: Results = answers.reduce((newResults, answer) => {
-      return quizServices.upRate(answer, newResults);
-    }, results);
-    setResults(newResults);
+    setCharacteristics((characteristics) => [
+      ...characteristics,
+      ...gameQuiz.questions[questionNumber].characteristics,
+    ]);
+    setQuestionNumber((number) => number + 1);
   };
 
   const onNoClick = () => {
-    setCurrentQuestion((number) => number + 1);
-    const answers = questions[currentQuestion].answers.yes;
-    const newResults = answers.reduce((newResults, answer) => {
-      return quizServices.downRate(answer, newResults);
-    }, results);
-    setResults(newResults);
+    setQuestionNumber((number) => number + 1);
   };
 
-  const BestGenre = () => {
-    const suitableGenres = Object.values(results).sort(
-      (a, b) => b.rate - a.rate
-    );
-    console.log(suitableGenres);
-    const genre = {
-      name: suitableGenres[0].name,
-      description: suitableGenres[0].description,
-    };
-    const onRestartClick = () => {
-      setResults(gameQuiz.results);
-      setCurrentQuestion(0);
-    };
+  const onRestartClick = () => {
+    setResults([]);
+    setCharacteristics([]);
+    setQuestionNumber(0);
+  };
+
+  useEffect(() => {
+    setResults(quizServices.updateResults(characteristics, gameQuiz.results));
+  }, [characteristics]);
+
+  if (questionNumber >= gameQuiz.questions.length) {
     return (
       <>
-        <div>Вам подойдёт: {genre.name}</div>
-        <div>Описание: {genre.description}</div>
-        <button onClick={onRestartClick}>сначала</button>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                <h1>Жанры которые могут вам понравиться</h1>
+              </th>
+            </tr>
+            {results.map((result) => {
+              return (
+                <tr key={result.name}>
+                  <th>
+                    <p>{result.name}</p>
+                  </th>
+                  <th>
+                    <p>{result.description}</p>
+                  </th>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <button onClick={onRestartClick}>Restart</button>
       </>
     );
-  };
-
+  }
   return (
     <>
-      {currentQuestion <= questions.length - 1 ? (
-        <div>
-          <p>{questions[currentQuestion].questionText}</p>
-          <div>
-            <button onClick={onYesClick}>да</button>
-            <button onClick={onNoClick}>нет</button>
-          </div>
-        </div>
-      ) : (
-        <BestGenre />
-      )}
+      <table>
+        <tbody>
+          <tr>
+            <th>
+              <p>Какой игровой жанр тебе подойдёт?</p>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <div>{gameQuiz.questions[questionNumber].text}</div>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <button onClick={onYesClick}>Yes</button>
+            </th>
+            <th>
+              <button onClick={onNoClick}>No</button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
     </>
   );
 };

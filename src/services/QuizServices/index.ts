@@ -1,23 +1,13 @@
-import { Results, SetRate } from "../../types";
+import { Characteristics, Result } from "../../types";
 
 class QuizServices {
-  upRate: SetRate = (key: string, results: Results) => {
-    return {
-      ...results,
-      [key]: {
-        ...results[key],
-        rate: results[key].rate + 1,
-      },
-    };
-  };
-  downRate: SetRate = (key: string, results: Results) => {
-    return {
-      ...results,
-      [key]: {
-        ...results[key],
-        rate: results[key].rate - 1,
-      },
-    };
+  updateResults = (characteristics: Characteristics[], results: Result[]) => {
+    const updatedResults = results.filter((result) => {
+      return result.characteristics.some((resultCharacteristic)=>{
+        return characteristics.some((characteristic)=>resultCharacteristic===characteristic);
+      })
+    });
+    return updatedResults;
   };
 }
 

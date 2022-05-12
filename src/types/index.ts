@@ -1,21 +1,34 @@
-export type Results = {
-  [key: string]: {
-    name: string;
-    description: string;
-    rate: number;
-  };
+export enum Characteristics {
+  SKILLS,
+  CHILDREN,
+  BLOOD,
+  MIDDLE_AGES,
+  SPACE,
+  ALIENS,
+  MMO,
+  ROUGE_LIKE,
+  HORROR,
+  THINK,
+  SPORT,
+  CARS,
+  MODERN,
+  ARDOR,
+  WITH_FRIEND,
+  ZOMBI
+}
+
+export type Result = {
+  name: string;
+  description: string;
+  characteristics: Characteristics[];
 };
 
-export type SetRate = (key: string, results: Results) => Results;
-
-export type Answers = {
-  yes: string[];
-  no: string[];
+export type Question = {
+  text: string;
+  characteristics: Characteristics[];
 };
-
-export type Questions = { questionText: string; answers: Answers }[];
 
 export type Quiz = {
-  results: Results;
-  questions: Questions;
+  results: Result[];
+  questions: Question[];
 };
